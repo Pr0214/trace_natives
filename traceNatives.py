@@ -1,19 +1,13 @@
 # -*- coding:utf-8 -*-
-import re
-import idautils
-import idc
-import idaapi
 import os
-import ida_bytes
 from idaapi import plugin_t
 from idaapi import PLUGIN_PROC
 from idaapi import PLUGIN_OK
-import time
-import ida_bytes
 import ida_nalt
 import idaapi
 import idautils
 import idc
+
 
 
 # 获取SO文件名和路径
