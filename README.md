@@ -5,14 +5,13 @@
 ## 使用方法
 
 1.将traceNatives.py丢进IDA plugins目录中
+
 2.IDA中，Edit-Plugins-traceNatives
 
 IDA输出窗口就会显示如下字眼：
 
 **使用方法如下：
 frida-trace -UF -O C:\Users\Lenovo\Desktop\2021\mt\libmtguard.txt**
-
-效果
 
 ![效果](test.png)
 
