@@ -7,6 +7,7 @@ import ida_nalt
 import idaapi
 import idautils
 import idc
+import time
 
 
 # 获取SO文件名和路径
@@ -63,7 +64,8 @@ class traceNatives(plugin_t):
         search_result = [f"-a '{so_name}!{offset}'" for offset in search_result]
         search_result = " ".join(search_result)
 
-        save_path = os.path.join(so_path, so_name.split(".")[0] + ".txt")
+        script_name = so_name.split(".")[0] + "_" + str(int(time.time())) +".txt"
+        save_path = os.path.join(so_path, script_name)
         with open(save_path, "w", encoding="utf-8")as F:
             F.write(search_result)
 
