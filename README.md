@@ -5,6 +5,7 @@
 ## 使用方法
 
 1.将traceNatives.py丢进IDA plugins目录中
+* 在ida 的python console中运行如下命令即可找到plugins目录：os.path.join(idaapi.get_user_idadir(), "plugins")
 
 2.IDA中，Edit-Plugins-traceNatives
 
