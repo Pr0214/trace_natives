@@ -22,8 +22,8 @@ def getSegAddr():
     textEnd = []
 
     for seg in idautils.Segments():
-        if (idc.get_segm_name(seg)).lower() == '.text' or (
-        idc.get_segm_name(seg)).lower() == 'text':
+        # 兼容dump so 的情况
+        if 'text' in (idc.get_segm_name(seg)).lower():
             tempStart = idc.get_segm_start(seg)
             tempEnd = idc.get_segm_end(seg)
 
@@ -61,16 +61,18 @@ class traceNatives(plugin_t):
                 pass
 
         so_path, so_name = getSoPathAndName()
-        search_result = [f"-a '{so_name}!{offset}'" for offset in search_result]
+        # 兼容IDA 7.0
+        search_result = ["-a '{}!{}'".format(so_name, offset) for offset in search_result]
         search_result = " ".join(search_result)
 
-        script_name = so_name.split(".")[0] + "_" + str(int(time.time())) +".txt"
+        script_name = so_name.split(".")[0] + "_" + str(int(time.time())) + ".txt"
         save_path = os.path.join(so_path, script_name)
-        with open(save_path, "w", encoding="utf-8")as F:
+        # 兼容IDA 7.0
+        with open(save_path, "w")as F:
             F.write(search_result)
 
         print("使用方法如下：")
-        print(f"frida-trace -UF -O {save_path}")
+        print("frida-trace -UF -O {}".format(save_path))
 
     def term(self):
         pass
